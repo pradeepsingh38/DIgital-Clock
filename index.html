@@ -5,8 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Digital Clock</title>
 </head>
+<style>
+    body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+        #clock {
+            font-size: 32px;
+            padding: 20px;
+            background: #fff;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            text-align: center;
+        }
+</style>
 <body>
-    <h1>hello</h1>
+    <div id="clock">00:00:00 AM</div>
+    <script>
+        setInterval(()=>{
+            const now = new Date();
+            let hours = now.getHours();
+            const minutes = now.getMinutes();
+            const seconds = now.getSeconds();
+
+            const ampm = hours >=  12 ? 'AM' : 'PM';
+
+            hours = hours%12;
+            hours = hours === 0 ? 12 : hours;
+
+            const formattedMinutes = minutes < 10 ? '0' + minutes : minutes;
+            const formattedSeconds = seconds < 10 ? '0' + seconds : seconds;
+
+            document.getElementById('clock').textContent = 
+                hours + ':' + formattedMinutes + ':' + formattedSeconds + ' ' + ampm;
+
+
+
+        },1000)
+    </script>
     
 </body>
 </html>
